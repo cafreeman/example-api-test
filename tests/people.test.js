@@ -28,15 +28,17 @@ describe('/people', () => {
   });
 });
 
+describe('/people?search=', () => {
+  test('looking up luke by name', async () => {
+    const response = await axios.get('/people?search=luke');
+  
+    expect(response.data.results).toContainEqual(Luke)
+  });
+});
+
 describe('/people/:id', () => {
   test('looking up luke by id', async () => {
     const response = await axios.get('/people/1');
-
-    expect(response.data).toEqual(Luke)
-  });
-
-  test('looking up luke by name', async () => {
-    const response = await axios.get('/people/1?name="Luke Skywalker"');
 
     expect(response.data).toEqual(Luke)
   });
